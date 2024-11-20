@@ -38,7 +38,6 @@ export const UserLogin = () => {
 
                if (response && response.data) {
                     const user = response.data.data
-                    // console.log("userLogin data", user);
                     dispatch(userExist(user));
                     toast.success(response.data.message);
                     navigate('/');

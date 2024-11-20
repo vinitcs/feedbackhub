@@ -33,8 +33,6 @@ export const UserRegister = () => {
 
      const handleSubmit = async (e) => {
           e.preventDefault();
-
-          // console.log(formData);
           if (formData.password !== formData.confirmPassword) {
                toast.error("Password and Confirm Password does not matched.")
                return;
@@ -44,7 +42,6 @@ export const UserRegister = () => {
           try {
                const { confirmPassword, ...dataToSend } = formData; // Exclude confirmPassword to send in backend.
                const response = await axios.post("http://localhost:5000/api/v1/userregister", dataToSend, { withCredentials: true });
-               console.log(response);
                toast.success(response.data.message);
                navigate("/");
 

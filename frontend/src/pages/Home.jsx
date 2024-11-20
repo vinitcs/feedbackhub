@@ -52,7 +52,6 @@ export const Home = () => {
                navigate('/');
 
           } catch (error) {
-               console.log(error);
                toast.error("Logout failed");
           }
      }
@@ -138,8 +137,6 @@ export const Home = () => {
 
           try {
                const response = await axios.post("http://localhost:5000/api/v1/addfeedbackbyuser", feedbackData, { withCredentials: true });
-
-               console.log(response);
                toast.success(response.data.message);
 
           } catch (error) {
