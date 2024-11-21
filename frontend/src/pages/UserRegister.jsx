@@ -41,7 +41,7 @@ export const UserRegister = () => {
           setCreateAccount(true);
           try {
                const { confirmPassword, ...dataToSend } = formData; // Exclude confirmPassword to send in backend.
-               const response = await axios.post("http://localhost:5000/api/v1/userregister", dataToSend, { withCredentials: true });
+               const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/userregister`, dataToSend, { withCredentials: true });
                toast.success(response.data.message);
                navigate("/");
 

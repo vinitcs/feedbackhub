@@ -34,7 +34,7 @@ export const UserLogin = () => {
           e.preventDefault();
 
           try {
-               const response = await axios.post('http://localhost:5000/api/v1/userlogin', formData, { withCredentials: true });
+               const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/userlogin`, formData, { withCredentials: true });
 
                if (response && response.data) {
                     const user = response.data.data

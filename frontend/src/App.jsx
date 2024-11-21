@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const userResponse = await axios.post("http://localhost:5000/api/v1/verify-token", {}, { withCredentials: true });
+        const userResponse = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/verify-token`, {}, { withCredentials: true });
         const user = userResponse.data.data;
         dispatch(userExist(user));
 

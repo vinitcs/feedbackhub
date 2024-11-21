@@ -24,7 +24,7 @@ export const Home = () => {
                try {
 
                     if (isLoggedIn) {
-                         await axios.get("http://localhost:5000/api/v1/loggeduser", { withCredentials: true }).then((response) => {
+                         await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/loggeduser`, { withCredentials: true }).then((response) => {
                               setFeedbackData({ feedback: response.data.data.user.feedback })
                          })
                     }
@@ -46,7 +46,7 @@ export const Home = () => {
 
      const handleLogoutClick = async () => {
           try {
-               const response = await axios.post("http://localhost:5000/api/v1/userlogout", {}, { withCredentials: true })
+               const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/userlogout`, {}, { withCredentials: true })
                dispatch(logout());
                toast.success(response.data.message);
                navigate('/');
@@ -109,7 +109,7 @@ export const Home = () => {
 
      const deleteUserAccount = async (id) => {
           try {
-               const response = await axios.delete(`http://localhost:5000/api/v1/userdelete/${id}`, { withCredentials: true });
+               const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/userdelete/${id}`, { withCredentials: true });
                toast.success(response.data.message);
                dispatch(logout());
                navigate('/');
@@ -136,7 +136,7 @@ export const Home = () => {
           }
 
           try {
-               const response = await axios.post("http://localhost:5000/api/v1/addfeedbackbyuser", feedbackData, { withCredentials: true });
+               const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/addfeedbackbyuser`, feedbackData, { withCredentials: true });
                toast.success(response.data.message);
 
           } catch (error) {
@@ -158,7 +158,7 @@ export const Home = () => {
                return
           }
           try {
-               const response = await axios.put("http://localhost:5000/api/v1/editfeedbackbyuser", feedbackData, { withCredentials: true });
+               const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/editfeedbackbyuser`, feedbackData, { withCredentials: true });
 
                toast.success(response.data.message);
 
