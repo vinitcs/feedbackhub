@@ -20,6 +20,8 @@ app.use(
   })
 );
 
+app.use(cookieParser());
+
 app.use(express.json({limit: "16kb"})) // limit use to set how much request will come
 
 app.use(express.urlencoded({ extended: true, limit: "16kb" }))
@@ -27,10 +29,8 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }))
 
 app.use(express.static("public")); // use to keep assests, favicon and so on
 
-app.use(cookieParser());
 
-// Middlewares
-app.use(express.json());
+
 
 // Routes
 import userRoutes from "./routes/user.routes.js";

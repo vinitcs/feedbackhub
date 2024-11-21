@@ -88,8 +88,10 @@ export const loginUser = async (req, res, next) => {
     // Set the JWT token in a cookie
     res.cookie("accessToken", token, {
       httpOnly: true, // Prevents access to the cookie via JavaScript
-      secure: true,
+      secure: true, // Ensures the cookie is only sent over HTTPS
+      sameSite: "None", // Allows the cookie to be sent in cross-origin requests
       maxAge: 5 * 60 * 1000,
+      path: "/", // Makes the cookie accessible across the entire site
     });
 
     return responseHandling(res, 200, "Login successful", {
@@ -108,7 +110,7 @@ export const loginUser = async (req, res, next) => {
 // User logged data
 export const loggedUser = async (req, res, next) => {
   try {
-    const user = await verifyUserTokenQuery(req.user.id);    
+    const user = await verifyUserTokenQuery(req.user.id);
     if (!user) {
       return responseHandling(res, 401, "User not authenticated");
     }

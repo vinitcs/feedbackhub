@@ -60,8 +60,10 @@ export const loginAdmin = async (req, res, next) => {
     // Set the JWT token in a cookie
     res.cookie("adminAccessToken", token, {
       httpOnly: true, // Prevents access to the cookie via JavaScript
-      secure: true,
+      secure: true, // Ensures the cookie is only sent over HTTPS
+      sameSite: "None", // Allows the cookie to be sent in cross-origin requests
       maxAge: 10 * 60 * 1000,
+      path: "/", // Makes the cookie accessible across the entire site
     });
 
     return responseHandling(res, 200, "Admin login successful", {
