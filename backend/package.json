@@ -1,15 +1,14 @@
 {
   "name": "feedbackhub-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "user feedback for company effective communication and improvement.",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "vinit chavan",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
