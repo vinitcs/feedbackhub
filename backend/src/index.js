@@ -3,8 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import pool from "./db/db.js";
-import userRoutes from "./routes/user.routes.js";
-import adminRoutes from "./routes/admin.routes.js";
 import errorHandling from "./middlewares/errorHandler.js";
 import createUserTable from "./data/createUserTable.js";
 
@@ -22,12 +20,22 @@ app.use(
   })
 );
 
+app.use(express.json({limit: "16kb"})) // limit use to set how much request will come
+
+app.use(express.urlencoded({ extended: true, limit: "16kb" }))
+// optional extended:true for now => deals nested objects
+
+app.use(express.static("public")); // use to keep assests, favicon and so on
+
 app.use(cookieParser());
 
 // Middlewares
 app.use(express.json());
 
 // Routes
+import userRoutes from "./routes/user.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", adminRoutes);
 

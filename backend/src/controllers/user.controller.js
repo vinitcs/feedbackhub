@@ -81,7 +81,7 @@ export const loginUser = async (req, res, next) => {
       { id: user.id, name: user.name },
       process.env.JWT_SECRET,
       {
-        expiresIn: "2m",
+        expiresIn: "5m",
       }
     );
 
@@ -89,7 +89,7 @@ export const loginUser = async (req, res, next) => {
     res.cookie("accessToken", token, {
       httpOnly: true, // Prevents access to the cookie via JavaScript
       secure: true,
-      maxAge: 2 * 60 * 1000,
+      maxAge: 5 * 60 * 1000,
     });
 
     return responseHandling(res, 200, "Login successful", {
@@ -108,7 +108,7 @@ export const loginUser = async (req, res, next) => {
 // User logged data
 export const loggedUser = async (req, res, next) => {
   try {
-    const user = await verifyUserTokenQuery(req.user.id);
+    const user = await verifyUserTokenQuery(req.user.id);    
     if (!user) {
       return responseHandling(res, 401, "User not authenticated");
     }
