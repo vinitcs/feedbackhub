@@ -8,7 +8,7 @@ const adminAuthenticate = (req, res, next) => {
   try {
     const token =
       req.cookies?.adminAccessToken ||
-      req.header("Authorization")?.replace("Bearer", "").trim(); // Extract token
+      req.header("Authorization")?.replace("Bearer", ""); // Extract token
 
     if (!token) {
       return responseHandling(res,401,"Admin access denied");
