@@ -136,8 +136,9 @@ export const logoutUser = async (req, res, next) => {
   try {
     res.clearCookie("accessToken", {
       httpOnly: true, // Prevents access to the cookie via JavaScript
-      secure: true,
-      sameSite: "Strict",
+      secure: true, // Ensures the cookie is only sent over HTTPS
+      sameSite: "None", // Allows the cookie to be sent in cross-origin requests
+      path: "/", // Makes the cookie accessible across the entire site
     });
     return responseHandling(res, 200, "Logout successful", {});
   } catch (err) {
